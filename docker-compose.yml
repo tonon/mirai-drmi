@@ -1,0 +1,20 @@
+services:
+  training:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: drmi-training
+    env_file:
+      - .env
+    environment:
+      - PYTHONPATH=/workspace
+    volumes:
+      - ./app:/workspace/app
+      - ./data:/workspace/data
+      - ./runs:/workspace/runs
+      - ~/.kaggle:/root/.kaggle:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
