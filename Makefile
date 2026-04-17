@@ -27,9 +27,30 @@ seg-stats:
 		python app/pipelines/segmentation_statistics_pipeline.py
 
 
+train-unet-resnet:
+	docker compose run --rm training \
+		python app/pipelines/train_unet_resnet_pipeline.py
+
+train-unet-efficient:
+	docker compose run --rm training \
+		python app/pipelines/train_unet_efficientnet_pipeline.py
+
+
 train:
 	docker compose run --rm training \
 		python app/pipelines/train_pipeline.py
+
+
+ensemble:
+	docker compose run --rm training \
+		python app/pipelines/ensemble_segmentation_pipeline.py
+
+
+train-classifier:
+	docker compose run --rm training \
+		python app/pipelines/train_classifier_pipeline.py
+
+
 
 shell:
 	docker compose run --rm training bash

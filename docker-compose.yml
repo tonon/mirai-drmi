@@ -8,10 +8,12 @@ services:
       - .env
     environment:
       - PYTHONPATH=/workspace
+    ipc: host
     volumes:
       - ./app:/workspace/app
       - ./data:/workspace/data
       - ./runs:/workspace/runs
+      - ./models:/workspace/models
       - ~/.kaggle:/root/.kaggle:ro
     deploy:
       resources:
