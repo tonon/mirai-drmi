@@ -50,7 +50,9 @@ train-classifier:
 	docker compose run --rm training \
 		python app/pipelines/train_classifier_pipeline.py
 
-
+infer:
+	docker compose run --rm training \
+		python app/pipelines/inference_pipeline.py
 
 shell:
 	docker compose run --rm training bash
