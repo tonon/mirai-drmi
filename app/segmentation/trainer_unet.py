@@ -12,7 +12,8 @@ class UNetTrainer:
         self.train_loader = train_loader
         self.val_loader = val_loader
         self.device = device
-        self.criterion = nn.BCELoss()
+        from app.segmentation.losses import CombinedLoss
+        self.criterion = CombinedLoss()
         
         Path(log_dir).mkdir(parents=True, exist_ok=True)
         self.writer = SummaryWriter(log_dir)

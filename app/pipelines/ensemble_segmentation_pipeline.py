@@ -53,11 +53,11 @@ def main():
         img = img.unsqueeze(0).to(device)
 
         with torch.no_grad():
-            pred_resnet = model_resnet(img)
-            pred_effnet = model_effnet(img)
+            pred_resnet = torch.sigmoid(model_resnet(img))
+            pred_effnet = torch.sigmoid(model_effnet(img))
 
             ensemble_prob = (pred_resnet + pred_effnet) / 2.0
-            ensemble_mask = (ensemble_prob > 0.5).float()
+            ensemble_mask = (ensemble_prob > 0.35).float()
 
         gt = gt_mask.squeeze().cpu().numpy()
         pred = ensemble_mask.squeeze().cpu().numpy()
